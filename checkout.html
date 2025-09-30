@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PNBVS0NRP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2PNBVS0NRP');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Checkout - Pierre's Escargot">
+    <title>Checkout - Pierre's Escargot</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5MNRMCM');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="cart.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5MNRMCM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <h1>🐌 Pierre's Escargot</h1>
+        <p>Fine Artisanal Escargot Since 1987</p>
+    </header>
+    
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge">0</span></a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Checkout</h2>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start;">
+                <div>
+                    <h3 style="font-family: 'Caveat', cursive; font-size: 2rem; color: var(--french-blue); margin-bottom: 1.5rem;">
+                        Order Summary
+                    </h3>
+                    <div id="order-items"></div>
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 4px dashed var(--french-red);">
+                        <p style="font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--french-blue);">
+                            Total: <span id="order-total" style="color: var(--croissant-gold);">$0.00</span>
+                        </p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 style="font-family: 'Caveat', cursive; font-size: 2rem; color: var(--french-blue); margin-bottom: 1.5rem;">
+                        Fake Payment Info
+                    </h3>
+                    <p style="margin-bottom: 2rem; color: #666;">
+                        (This is just for testing - no real payment processing!)
+                    </p>
+                    
+                    <form id="checkoutForm" class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name on Card</label>
+                            <input type="text" id="name" name="name" required placeholder="Pierre Escargot">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required placeholder="pierre@snails.fr">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="card">Card Number</label>
+                            <input type="text" id="card" name="card" required placeholder="4242 4242 4242 4242" maxlength="19">
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                            <div class="form-group">
+                                <label for="expiry">Expiry</label>
+                                <input type="text" id="expiry" name="expiry" required placeholder="MM/YY" maxlength="5">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" required placeholder="123" maxlength="3">
+                            </div>
+                        </div>
+                        
+                        <button type="submit">Complete Purchase</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        function renderOrderSummary() {
+            const cart = Cart.getCart();
+            const orderItemsDiv = document.getElementById('order-items');
+            
+            if (cart.length === 0) {
+                window.location.href = 'cart.html';
+                return;
+            }
+            
+            orderItemsDiv.innerHTML = cart.map(item => `
+                <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 2px solid var(--bistro-cream);">
+                    <div>
+                        <strong>${item.name}</strong>
+                        <span style="color: #999;"> × ${item.quantity}</span>
+                    </div>
+                    <div style="font-weight: 700; color: var(--croissant-gold);">
+                        $${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                </div>
+            `).join('');
+            
+            document.getElementById('order-total').textContent = '$' + Cart.getTotal().toFixed(2);
+        }
+        
+        // Handle checkout submission
+        document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Fire purchase event for pixel tracking
+            const cart = Cart.getCart();
+            const total = Cart.getTotal();
+            
+            // Store order details in sessionStorage for confirmation page
+            sessionStorage.setItem('lastOrder', JSON.stringify({
+                items: cart,
+                total: total,
+                orderNumber: 'PE-' + Date.now(),
+                date: new Date().toISOString()
+            }));
+            
+            // Clear cart
+            Cart.clearCart();
+            
+            // Redirect to confirmation
+            window.location.href = 'order-confirmation.html';
+        });
+        
+        // Render summary on page load
+        renderOrderSummary();
+    </script>
+</body>
+</html>

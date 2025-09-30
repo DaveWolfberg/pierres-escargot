@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PNBVS0NRP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2PNBVS0NRP');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Your shopping cart - Pierre's Escargot">
+    <title>Shopping Cart - Pierre's Escargot</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5MNRMCM');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="cart.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5MNRMCM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <h1>🐌 Pierre's Escargot</h1>
+        <p>Fine Artisanal Escargot Since 1987</p>
+    </header>
+    
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html" class="active">Cart <span class="cart-badge">0</span></a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Your Shopping Cart</h2>
+            
+            <div id="cart-empty" style="display: none; text-align: center; padding: 3rem;">
+                <p style="font-size: 3rem; margin-bottom: 1rem;">🛒</p>
+                <p style="font-size: 1.3rem; margin-bottom: 2rem;">Your cart is empty! Pierre is disappointed (silently).</p>
+                <a href="products.html" class="cta-button" style="max-width: 300px; margin: 0 auto;">Browse Products</a>
+            </div>
+            
+            <div id="cart-items"></div>
+            
+            <div id="cart-summary" style="display: none;">
+                <div style="text-align: right; margin-top: 2rem; padding-top: 2rem; border-top: 4px dashed var(--french-red);">
+                    <p style="font-family: 'Caveat', cursive; font-size: 2rem; color: var(--french-blue); margin-bottom: 1rem;">
+                        Total: <span id="cart-total" style="color: var(--croissant-gold);">$0.00</span>
+                    </p>
+                    <a href="checkout.html" class="cta-button" style="max-width: 300px; margin-left: auto;">Proceed to Checkout</a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        function renderCart() {
+            const cart = Cart.getCart();
+            const cartItemsDiv = document.getElementById('cart-items');
+            const cartEmpty = document.getElementById('cart-empty');
+            const cartSummary = document.getElementById('cart-summary');
+            
+            if (cart.length === 0) {
+                cartEmpty.style.display = 'block';
+                cartItemsDiv.innerHTML = '';
+                cartSummary.style.display = 'none';
+            } else {
+                cartEmpty.style.display = 'none';
+                cartSummary.style.display = 'block';
+                
+                cartItemsDiv.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="cart-item-info">
+                            <h3>${item.name}</h3>
+                            <p class="cart-item-price">$${item.price.toFixed(2)}</p>
+                        </div>
+                        <div class="cart-item-quantity">
+                            <label>Qty:</label>
+                            <input type="number" min="1" value="${item.quantity}" 
+                                   onchange="updateQuantity('${item.id}', this.value)">
+                        </div>
+                        <div class="cart-item-total">
+                            $${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                        <button class="remove-btn" onclick="removeItem('${item.id}')">✕</button>
+                    </div>
+                `).join('');
+                
+                document.getElementById('cart-total').textContent = '$' + Cart.getTotal().toFixed(2);
+            }
+        }
+        
+        function updateQuantity(productId, quantity) {
+            Cart.updateQuantity(productId, quantity);
+            renderCart();
+        }
+        
+        function removeItem(productId) {
+            Cart.removeItem(productId);
+            renderCart();
+        }
+        
+        // Render cart on page load
+        renderCart();
+    </script>
+</body>
+</html>

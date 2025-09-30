@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-2PNBVS0NRP"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-2PNBVS0NRP');
+    </script>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Order Confirmation - Pierre's Escargot">
+    <title>Order Confirmed! - Pierre's Escargot</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5MNRMCM');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+    <script src="cart.js"></script>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5MNRMCM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <h1>🐌 Pierre's Escargot</h1>
+        <p>Fine Artisanal Escargot Since 1987</p>
+    </header>
+    
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart <span class="cart-badge">0</span></a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section class="hero">
+            <h2>Merci Beaucoup! 🎉</h2>
+            <p class="hero-text" style="font-size: 1.5rem; margin-bottom: 2rem;">
+                Your order has been received!<br>
+                Pierre is silently celebrating right now.
+            </p>
+        </section>
+        
+        <section>
+            <h2>Order Details</h2>
+            
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <p style="font-size: 1.2rem; color: #666; margin-bottom: 0.5rem;">Order Number:</p>
+                <p id="order-number" style="font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--french-blue);"></p>
+            </div>
+            
+            <div id="order-summary"></div>
+            
+            <div style="margin-top: 2rem; padding-top: 2rem; border-top: 4px dashed var(--french-red); text-align: right;">
+                <p style="font-family: 'Caveat', cursive; font-size: 2.5rem; color: var(--french-blue);">
+                    Total Paid: <span id="order-total" style="color: var(--croissant-gold);">$0.00</span>
+                </p>
+            </div>
+        </section>
+        
+        <section>
+            <h2>What Happens Next?</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">📦</div>
+                    <div class="story">
+                        <h3>Packaging</h3>
+                        <p>Pierre will personally package your order while performing a silent ceremony. This may take 2-3 business days (longer on Tuesdays).</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="year">🚚</div>
+                    <div class="story">
+                        <h3>Shipping</h3>
+                        <p>Your order will be shipped via our partner who tolerates Pierre's mime performances. Expect delivery in 5-7 business days.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="year">🎭</div>
+                    <div class="story">
+                        <h3>Enjoyment</h3>
+                        <p>Enjoy your authentic French products! Pierre recommends pairing the escargot with a good wine and the mime costume with absolute silence.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <h2>Want More?</h2>
+            <p>Browse our other ridiculous products or learn about Pierre's questionable business decisions!</p>
+            <a href="products.html" class="cta-button">Continue Shopping</a>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Load order from sessionStorage
+        const orderData = sessionStorage.getItem('lastOrder');
+        
+        if (!orderData) {
+            window.location.href = 'products.html';
+        } else {
+            const order = JSON.parse(orderData);
+            
+            // Display order number
+            document.getElementById('order-number').textContent = order.orderNumber;
+            
+            // Display order items
+            const orderSummaryDiv = document.getElementById('order-summary');
+            orderSummaryDiv.innerHTML = order.items.map(item => `
+                <div style="display: flex; justify-content: space-between; align-items: center; padding: 1.5rem; border-bottom: 2px solid var(--bistro-cream);">
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <img src="${item.image}" alt="${item.name}" style="width: 80px; height: 80px; object-fit: cover; border-radius: 8px; border: 3px solid var(--french-blue);">
+                        <div>
+                            <strong style="font-size: 1.3rem;">${item.name}</strong><br>
+                            <span style="color: #999;">Quantity: ${item.quantity}</span>
+                        </div>
+                    </div>
+                    <div style="font-family: 'Caveat', cursive; font-size: 1.8rem; font-weight: 700; color: var(--croissant-gold);">
+                        $${(item.price * item.quantity).toFixed(2)}
+                    </div>
+                </div>
+            `).join('');
+            
+            // Display total
+            document.getElementById('order-total').textContent = '$' + order.total.toFixed(2);
+            
+            // Fire purchase event for tracking (can be picked up by pixels)
+            console.log('Purchase Event:', {
+                orderNumber: order.orderNumber,
+                total: order.total,
+                items: order.items
+            });
+        }
+    </script>
+</body>
+</html>
