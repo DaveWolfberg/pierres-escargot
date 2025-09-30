@@ -1,8 +1,11 @@
 // Cart Management - Client-side only using localStorage
+console.log('Cart.js loaded successfully');
+
 const Cart = {
     // Get cart from localStorage
     getCart() {
         const cart = localStorage.getItem('pierres-cart');
+        console.log('Getting cart from localStorage:', cart);
         return cart ? JSON.parse(cart) : [];
     },
     
@@ -14,11 +17,13 @@ const Cart = {
     
     // Add item to cart
     addItem(product) {
+        console.log('Adding item to cart:', product);
         const cart = this.getCart();
         const existingItem = cart.find(item => item.id === product.id);
         
         if (existingItem) {
             existingItem.quantity += 1;
+            console.log('Item already exists, incrementing quantity');
         } else {
             cart.push({
                 id: product.id,
@@ -27,9 +32,11 @@ const Cart = {
                 image: product.image,
                 quantity: 1
             });
+            console.log('New item added to cart');
         }
         
         this.saveCart(cart);
+        console.log('Cart after adding:', cart);
         return true;
     },
     
@@ -86,5 +93,7 @@ const Cart = {
 
 // Initialize cart count on page load
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, updating cart count');
     Cart.updateCartCount();
+    console.log('Current cart:', Cart.getCart());
 });
