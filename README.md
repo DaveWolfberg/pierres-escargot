@@ -6,10 +6,10 @@ A simple static website template with Google Tag Manager, Shopify Buy Button int
 
 This is a minimal, production-ready static site designed for:
 - **Google Tag Manager (GTM)** - Track user behavior and analytics
-- **Shopify Buy Button** - Sell products directly on your static site
+- **Product Showcase** - Display products with manual buy buttons/links
 - **Custom Script Injection** - Easily add third-party pixels, chat widgets, or tracking scripts
 
-Perfect for launching a simple e-commerce landing page or product showcase with GitHub Pages.
+Perfect for launching a simple landing page or product showcase with GitHub Pages. All buttons and integrations are manual - no complex SDKs or dependencies.
 
 ## Quick Start
 
@@ -24,7 +24,7 @@ Perfect for launching a simple e-commerce landing page or product showcase with 
 3. **Commit and push your changes**:
    ```bash
    git add .
-   git commit -m "Configure GTM and Shopify"
+   git commit -m "Configure site settings"
    git push origin main
    ```
 
@@ -53,44 +53,90 @@ The `index.html` file is fully self-contained with inline CSS and JavaScript. He
 2. Select your container
 3. Look for the ID in the format `GTM-XXXXXXX` at the top
 
-### 2. Shopify Buy Button
+### 2. Product Cards & Buy Buttons
 
-**Find this section near the bottom of `<body>`:**
-```javascript
-// ============================================================
-// SHOPIFY CONFIGURATION - REPLACE THESE VALUES
-// ============================================================
-var domain = 'your-store.myshopify.com';
-var storefrontAccessToken = 'your-storefront-access-token-here';
-var productId = 'gid://shopify/Product/1234567890';
+The site includes **three product cards** by default: Escargot, Croissant, and Mime Costume. Each has a simple "Buy Now" button.
+
+**Find each product card in the HTML:**
+```html
+<div class="product-card">
+    <img src="https://via.placeholder.com/400x300/..." alt="Premium Escargot">
+    <h3>Escargot de Bourgogne</h3>
+    <p>Traditional Burgundy snails...</p>
+    <div class="product-price">$24.99</div>
+    <a href="#" class="buy-button">Buy Now</a>
+</div>
 ```
 
-**Replace these three values:**
+#### How to Configure Buy Buttons
 
-- **`domain`**: Your Shopify store domain (e.g., `pierres-escargot.myshopify.com`)
-- **`storefrontAccessToken`**: Your Storefront API access token
-- **`productId`**: The product GID you want to display
+Each product has a simple `<a href="#" class="buy-button">` link. Here are your options:
 
-**How to get these values:**
+**Option 1: Link to External Store (Shopify, Etsy, etc.)**
+```html
+<a href="https://your-store.myshopify.com/products/escargot" class="buy-button">Buy Now</a>
+```
 
-#### A. Get your Shopify domain
-- It's in your Shopify admin URL: `https://[your-store].myshopify.com/admin`
+**Option 2: Link to Checkout Page**
+```html
+<a href="https://checkout.your-store.com/escargot" class="buy-button">Buy Now</a>
+```
 
-#### B. Get your Storefront Access Token
-1. In Shopify Admin, go to **Settings** → **Apps and sales channels**
-2. Click **Develop apps** (or **Manage private apps** for older accounts)
-3. Click **Create an app** → Name it (e.g., "Buy Button App")
-4. Go to **Configuration** → **Storefront API** → Check **unauthenticated_read_product_listings**
-5. Click **Install app** → Copy the **Storefront API access token**
+**Option 3: Add JavaScript for Custom Behavior**
+```html
+<a href="#" class="buy-button" onclick="addToCart('escargot'); return false;">Buy Now</a>
+```
 
-#### C. Get your Product ID (GID)
-1. In Shopify Admin, go to **Products**
-2. Click on the product you want to sell
-3. Look at the URL: `https://admin.shopify.com/store/[store]/products/[PRODUCT_ID]`
-4. The product GID format is: `gid://shopify/Product/[PRODUCT_ID]`
-   - Example: If URL shows `products/8675309`, use `gid://shopify/Product/8675309`
+Then add a script at the bottom:
+```javascript
+function addToCart(productId) {
+    // Your custom cart logic here
+    alert('Added ' + productId + ' to cart!');
+}
+```
 
-### 3. Custom Script Injection
+**Option 4: Email/Contact Form**
+```html
+<a href="mailto:orders@pierres-escargot.com?subject=Order: Escargot" class="buy-button">Order via Email</a>
+```
+
+**Option 5: Embed Buy Button Widget**
+Paste any third-party buy button code (Shopify, Gumroad, Stripe) directly:
+```html
+<!-- Replace the <a> tag with: -->
+<div class="buy-button">
+    <!-- Paste your Shopify/Gumroad/Stripe button code here -->
+</div>
+```
+
+### 3. Update Product Details
+
+**Edit prices:**
+```html
+<div class="product-price">$24.99</div>  <!-- Change this -->
+```
+
+**Edit product images:**
+```html
+<img src="https://via.placeholder.com/400x300/..." alt="Premium Escargot">
+```
+Replace `src` with:
+- Direct image URL: `https://yourcdn.com/escargot.jpg`
+- Relative path: `images/escargot.jpg` (if you add an `images/` folder)
+- Any image hosting service (Imgur, Cloudinary, etc.)
+
+**Edit titles and descriptions:**
+```html
+<h3>Escargot de Bourgogne</h3>
+<p>Traditional Burgundy snails...</p>
+```
+
+**Add or remove products:**
+- Copy/paste an entire `<div class="product-card">` block to add more
+- Delete a product card to remove it
+- The grid will automatically adjust (responsive CSS)
+
+### 4. Custom Script Injection
 
 **Find this section in `index.html`:**
 ```html
@@ -110,12 +156,20 @@ Examples: Facebook Pixel, Intercom, Drift, Hotjar, etc.
 - Custom tracking pixels
 - Any other `<script>` tags
 
-### 4. Customize Content
+### 5. Customize Appearance
 
 Feel free to edit:
 - **Header title and tagline** - Update the `<h1>` and `<p>` in `<header>`
 - **Welcome text** - Edit the content in the first `<section>`
-- **Colors and styling** - Modify CSS variables in `:root` or any other styles
+- **Colors** - Modify CSS variables in `:root`:
+  ```css
+  :root {
+      --primary-color: #2c3e50;    /* Dark blue-gray */
+      --secondary-color: #3498db;   /* Blue (button color) */
+      --accent-color: #e74c3c;      /* Red (warnings) */
+  }
+  ```
+- **Button style** - Edit `.buy-button` CSS class
 - **Meta tags** - Update description, title, etc. in `<head>`
 
 ## How to Enable GitHub Pages
@@ -144,10 +198,16 @@ That's it! Everything is self-contained in `index.html`.
 
 ## Troubleshooting
 
-### Shopify Buy Button not showing?
-- Double-check your `domain`, `storefrontAccessToken`, and `productId`
-- Make sure the product is published to your sales channel
-- Check browser console for errors (F12 → Console)
+### Buy buttons not working?
+- Check that `href` links are valid URLs (not `#`)
+- If using JavaScript, check browser console for errors (F12 → Console)
+- For third-party widgets (Shopify/Gumroad), verify embed code is correct
+- Test links in incognito mode to rule out browser extensions
+
+### Images not loading?
+- Verify image URLs are valid and accessible
+- Check for HTTPS/HTTP mixed content issues (GitHub Pages uses HTTPS)
+- Try opening image URL directly in browser to test
 
 ### GTM not tracking?
 - Verify your GTM container ID is correct
@@ -162,6 +222,14 @@ That's it! Everything is self-contained in `index.html`.
 ## License
 
 MIT License - Feel free to use this template for any project!
+
+## Tips for Going Live
+
+- **Connect a custom domain**: GitHub Pages supports custom domains (e.g., `pierres-escargot.com`)
+- **Add SSL**: GitHub Pages includes free HTTPS automatically
+- **SEO**: Update meta tags in `<head>` for better search engine visibility
+- **Analytics**: GTM is already set up - just configure your tags in Google Tag Manager
+- **Payment processing**: Use Stripe, PayPal, Shopify Buy Buttons, or link to external store
 
 ---
 

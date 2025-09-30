@@ -138,6 +138,85 @@
             color: var(--accent-color);
         }
         
+        /* Products Grid */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .product-card {
+            background: var(--white);
+            border: 1px solid #e0e0e0;
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+        }
+        
+        .product-card h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .product-card p {
+            color: #666;
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        
+        .product-card .product-price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+        
+        .product-card .buy-button {
+            margin-top: auto;
+            display: inline-block;
+            width: 100%;
+            padding: 1rem 2rem;
+            background: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            text-align: center;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background 0.3s ease, transform 0.2s ease;
+            border: none;
+            cursor: pointer;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        }
+        
+        .product-card .buy-button:hover {
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+        
+        .product-card .buy-button:active {
+            transform: translateY(0);
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             header h1 {
@@ -170,8 +249,7 @@
             <h2>Welcome</h2>
             <p>
                 Welcome to Pierre's Escargot, your premier destination for the finest escargot products. 
-                This page integrates Google Tag Manager for analytics, Shopify for seamless purchasing, 
-                and custom script injection for third-party tools.
+                This page integrates Google Tag Manager for analytics and custom script injection for third-party tools.
             </p>
             <p>
                 Browse our products below and enjoy the authentic taste of French cuisine!
@@ -179,11 +257,45 @@
         </section>
         
         <section>
-            <h2>Featured Product</h2>
-            <p>Check out our premium escargot selection:</p>
+            <h2>Our Products</h2>
+            <p>Discover our handpicked selection of authentic French delicacies:</p>
             
-            <div class="shopify-buy-button-container">
-                <div id='product-component-1234567890'></div>
+            <div class="products-grid">
+                <!-- Product 1: Escargot -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300/3498db/ffffff?text=Escargot" alt="Premium Escargot">
+                    <h3>Escargot de Bourgogne</h3>
+                    <p>
+                        Traditional Burgundy snails prepared with garlic herb butter. 
+                        A timeless French delicacy that brings authentic bistro flavors to your table.
+                    </p>
+                    <div class="product-price">$24.99</div>
+                    <a href="#" class="buy-button">Buy Now</a>
+                </div>
+                
+                <!-- Product 2: Croissant -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300/e74c3c/ffffff?text=Croissant" alt="Artisan Croissants">
+                    <h3>Croissants au Beurre</h3>
+                    <p>
+                        Buttery, flaky croissants made with premium French butter. 
+                        Baked fresh daily using traditional laminating techniques for perfect layers.
+                    </p>
+                    <div class="product-price">$8.99</div>
+                    <a href="#" class="buy-button">Buy Now</a>
+                </div>
+                
+                <!-- Product 3: Mime Costume -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/400x300/2c3e50/ffffff?text=Mime+Costume" alt="Classic Mime Costume">
+                    <h3>Le Mime Complet</h3>
+                    <p>
+                        Complete authentic mime costume set: striped shirt, beret, white gloves, and face paint. 
+                        Perfect for performances or themed events.
+                    </p>
+                    <div class="product-price">$49.99</div>
+                    <a href="#" class="buy-button">Buy Now</a>
+                </div>
             </div>
         </section>
         
@@ -211,144 +323,6 @@
         <p>&copy; <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
     </footer>
     
-    <!-- Shopify Buy Button Script -->
-    <script type="text/javascript">
-    /*<![CDATA[*/
-    (function () {
-      // ============================================================
-      // SHOPIFY CONFIGURATION - REPLACE THESE VALUES
-      // ============================================================
-      var domain = 'your-store.myshopify.com';  // Replace with your Shopify domain
-      var storefrontAccessToken = 'your-storefront-access-token-here';  // Replace with your Storefront API token
-      var productId = 'gid://shopify/Product/1234567890';  // Replace with your product GID
-      
-      var scriptURL = 'https://sdks.shopifycdn.com/buy-button/latest/buy-button-storefront.min.js';
-      
-      if (window.ShopifyBuy) {
-        if (window.ShopifyBuy.UI) {
-          ShopifyBuyInit();
-        } else {
-          loadScript();
-        }
-      } else {
-        loadScript();
-      }
-      
-      function loadScript() {
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = scriptURL;
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(script);
-        script.onload = ShopifyBuyInit;
-      }
-      
-      function ShopifyBuyInit() {
-        var client = ShopifyBuy.buildClient({
-          domain: domain,
-          storefrontAccessToken: storefrontAccessToken,
-        });
-        
-        ShopifyBuy.UI.onReady(client).then(function (ui) {
-          ui.createComponent('product', {
-            id: productId,
-            node: document.getElementById('product-component-1234567890'),
-            moneyFormat: '%24%7B%7Bamount%7D%7D',
-            options: {
-              "product": {
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "calc(25% - 20px)",
-                      "margin-left": "20px",
-                      "margin-bottom": "50px"
-                    }
-                  },
-                  "button": {
-                    "font-family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
-                    "font-size": "16px",
-                    "padding-top": "16px",
-                    "padding-bottom": "16px",
-                    "color": "#ffffff",
-                    "background-color": "#3498db",
-                    ":hover": {
-                      "background-color": "#2980b9"
-                    },
-                    ":focus": {
-                      "background-color": "#2980b9"
-                    },
-                    "border-radius": "8px"
-                  }
-                },
-                "text": {
-                  "button": "Add to cart"
-                }
-              },
-              "productSet": {
-                "styles": {
-                  "products": {
-                    "@media (min-width: 601px)": {
-                      "margin-left": "-20px"
-                    }
-                  }
-                }
-              },
-              "modalProduct": {
-                "contents": {
-                  "img": false,
-                  "imgWithCarousel": true,
-                  "button": false,
-                  "buttonWithQuantity": true
-                },
-                "styles": {
-                  "product": {
-                    "@media (min-width: 601px)": {
-                      "max-width": "100%",
-                      "margin-left": "0px",
-                      "margin-bottom": "0px"
-                    }
-                  }
-                }
-              },
-              "cart": {
-                "styles": {
-                  "button": {
-                    "font-family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
-                    "font-size": "16px",
-                    "padding-top": "16px",
-                    "padding-bottom": "16px",
-                    "color": "#ffffff",
-                    "background-color": "#3498db",
-                    ":hover": {
-                      "background-color": "#2980b9"
-                    },
-                    ":focus": {
-                      "background-color": "#2980b9"
-                    },
-                    "border-radius": "8px"
-                  }
-                }
-              },
-              "toggle": {
-                "styles": {
-                  "toggle": {
-                    "font-family": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif",
-                    "background-color": "#3498db",
-                    ":hover": {
-                      "background-color": "#2980b9"
-                    },
-                    ":focus": {
-                      "background-color": "#2980b9"
-                    }
-                  }
-                }
-              }
-            },
-          });
-        });
-      }
-    })();
-    /*]]>*/
-    </script>
     
     <!-- Auto-fill Copyright Year -->
     <script>
