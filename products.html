@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse our selection of escargot, croissants, and mime costumes">
+    <title>Products - Pierre's Escargot</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5MNRMCM');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5MNRMCM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <h1>🐌 Pierre's Escargot</h1>
+        <p>Fine Artisanal Escargot Since 1987</p>
+    </header>
+    
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html" class="active">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Our Products</h2>
+            <p>Discover our handpicked selection of authentic French delicacies (and mime supplies):</p>
+            
+            <div class="products-grid">
+                <!-- Product 1: Escargot -->
+                <a href="escargot.html" class="product-card">
+                    <img src="images/escargot.jpg" alt="Premium Escargot">
+                    <h3>Escargot de Bourgogne</h3>
+                    <p>
+                        Traditional Burgundy snails prepared with garlic herb butter. 
+                        A timeless French delicacy that brings authentic bistro flavors to your table.
+                    </p>
+                    <div class="product-price">$24.99</div>
+                    <span class="buy-button">View Details</span>
+                </a>
+                
+                <!-- Product 2: Croissant -->
+                <a href="croissant.html" class="product-card">
+                    <img src="images/croissant.webp" alt="Artisan Croissants">
+                    <h3>Croissants au Beurre</h3>
+                    <p>
+                        Buttery, flaky croissants made with premium French butter. 
+                        Baked fresh daily using traditional laminating techniques for perfect layers.
+                    </p>
+                    <div class="product-price">$8.99</div>
+                    <span class="buy-button">View Details</span>
+                </a>
+                
+                <!-- Product 3: Mime Costume -->
+                <a href="mime.html" class="product-card">
+                    <img src="images/mime.webp" alt="Classic Mime Costume">
+                    <h3>Le Mime Complet</h3>
+                    <p>
+                        Complete authentic mime costume set: striped shirt, beret, white gloves, and face paint. 
+                        Perfect for performances or themed events.
+                    </p>
+                    <div class="product-price">$49.99</div>
+                    <span class="buy-button">View Details</span>
+                </a>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

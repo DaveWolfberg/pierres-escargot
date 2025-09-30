@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Pierre's Escargot - We'd love to hear from you!">
+    <title>Contact Us - Pierre's Escargot</title>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-P5MNRMCM');</script>
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Patrick+Hand&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P5MNRMCM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <header>
+        <h1>🐌 Pierre's Escargot</h1>
+        <p>Fine Artisanal Escargot Since 1987</p>
+    </header>
+    
+    <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html" class="active">Contact</a>
+    </nav>
+    
+    <main>
+        <section>
+            <h2>Get in Touch</h2>
+            <p style="text-align: center; font-size: 1.2rem;">
+                Have questions? Want to share your Pierre's Escargot experience? Need mime advice? 
+                We'd love to hear from you! (Pierre might respond in pantomime though.)
+            </p>
+            
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Jean-Pierre Dubois">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="you@example.com">
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required placeholder="Snail Emergency">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Your Message</label>
+                    <textarea id="message" name="message" required placeholder="Tell us your story... (Pierre reads all messages on Tuesdays during mime breaks)"></textarea>
+                </div>
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+        
+        <section>
+            <h2>Other Ways to Reach Us</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="year">📧</div>
+                    <div class="story">
+                        <h3>Email</h3>
+                        <p>info@pierres-escargot.com<br>
+                        (Pierre checks this every Tuesday after mime class)</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="year">📞</div>
+                    <div class="story">
+                        <h3>Phone</h3>
+                        <p>1-800-ESCARGOT<br>
+                        (Warning: Pierre may answer in mime. It's awkward.)</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="year">📍</div>
+                    <div class="story">
+                        <h3>Visit Us</h3>
+                        <p>123 Rue du Escargot<br>
+                        Snailville, FR 12345<br><br>
+                        <strong>Hours:</strong><br>
+                        Mon, Wed-Sun: 9am - 6pm<br>
+                        Tuesday: CLOSED (Mime show at senior center)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="cta">
+            <h2>Not Ready to Reach Out?</h2>
+            <p>Browse our products or learn more about our ridiculous history!</p>
+            <a href="products.html" class="cta-button">Check Out Our Products</a>
+        </section>
+    </main>
+    
+    <footer>
+        <p>© <span id="current-year"></span> Pierre's Escargot. All rights reserved.</p>
+    </footer>
+    
+    <script>
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real app, you'd send this to a server
+            // For now, we'll just show an alert
+            alert(`Thanks for reaching out, ${name}! Pierre will mime a response to you shortly.\n\n(This is a demo - form submission isn't actually working yet. To make it work, connect it to a service like Formspree, Netlify Forms, or your own backend.)`);
+            
+            // Clear the form
+            this.reset();
+        });
+    </script>
+</body>
+</html>
