@@ -243,7 +243,8 @@ section p {
 }
 
 .product-card .buy-button,
-.cta-button {
+.cta-button,
+button.buy-button {
     margin-top: auto;
     display: inline-block;
     width: 100%;
@@ -263,7 +264,8 @@ section p {
 }
 
 .product-card .buy-button:hover,
-.cta-button:hover {
+.cta-button:hover,
+button.buy-button:hover {
     background: var(--french-blue);
     border-color: var(--french-red);
     transform: translateY(-3px) scale(1.02);
@@ -271,11 +273,13 @@ section p {
 }
 
 .product-card .buy-button:active,
-.cta-button:active {
+.cta-button:active,
+button.buy-button:active {
     transform: translateY(0) scale(0.98);
 }
 
-.product-card .buy-button::before {
+.product-card .buy-button::before,
+button.buy-button::before {
     content: "🛒 ";
 }
 

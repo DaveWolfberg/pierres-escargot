@@ -57,40 +57,70 @@
             
             <div class="products-grid">
                 <!-- Product 1: Escargot -->
-                <a href="escargot.html" class="product-card">
-                    <img src="images/escargot.jpg" alt="Premium Escargot">
-                    <h3>Escargot de Bourgogne</h3>
+                <div class="product-card">
+                    <a href="escargot.html">
+                        <img src="images/escargot.jpg" alt="Premium Escargot">
+                    </a>
+                    <a href="escargot.html" style="text-decoration: none; color: inherit;">
+                        <h3>Escargot de Bourgogne</h3>
+                    </a>
                     <p>
                         Traditional Burgundy snails prepared with garlic herb butter. 
                         A timeless French delicacy that brings authentic bistro flavors to your table.
                     </p>
                     <div class="product-price">$24.99</div>
-                    <span class="buy-button">View Details</span>
-                </a>
+                    <button class="buy-button add-to-cart-btn" 
+                            data-id="escargot" 
+                            data-name="Escargot de Bourgogne" 
+                            data-price="24.99" 
+                            data-image="images/escargot.jpg">
+                        Add to Cart
+                    </button>
+                </div>
                 
                 <!-- Product 2: Croissant -->
-                <a href="croissant.html" class="product-card">
-                    <img src="images/croissant.webp" alt="Artisan Croissants">
-                    <h3>Croissants au Beurre</h3>
+                <div class="product-card">
+                    <a href="croissant.html">
+                        <img src="images/croissant.webp" alt="Artisan Croissants">
+                    </a>
+                    <a href="croissant.html" style="text-decoration: none; color: inherit;">
+                        <h3>Croissants au Beurre</h3>
+                    </a>
                     <p>
                         Buttery, flaky croissants made with premium French butter. 
                         Baked fresh daily using traditional laminating techniques for perfect layers.
                     </p>
                     <div class="product-price">$8.99</div>
-                    <span class="buy-button">View Details</span>
-                </a>
+                    <button class="buy-button add-to-cart-btn" 
+                            data-id="croissant" 
+                            data-name="Croissants au Beurre" 
+                            data-price="8.99" 
+                            data-image="images/croissant.webp">
+                        Add to Cart
+                    </button>
+                </div>
                 
                 <!-- Product 3: Mime Costume -->
-                <a href="mime.html" class="product-card">
-                    <img src="images/mime.webp" alt="Classic Mime Costume">
-                    <h3>Le Mime Complet</h3>
+                <div class="product-card">
+                    <a href="mime.html">
+                        <img src="images/mime.webp" alt="Classic Mime Costume">
+                    </a>
+                    <a href="mime.html" style="text-decoration: none; color: inherit;">
+                        <h3>Le Mime Complet</h3>
+                    </a>
                     <p>
                         Complete authentic mime costume set: striped shirt, beret, white gloves, and face paint. 
                         Perfect for performances or themed events.
                     </p>
                     <div class="product-price">$49.99</div>
-                    <span class="buy-button">View Details</span>
-                </a>
+                    <button class="buy-button add-to-cart-btn" 
+                            data-id="mime" 
+                            data-name="Le Mime Complet" 
+                            data-price="49.99" 
+                            data-image="images/mime.webp">
+                        Add to Cart
+                    </button>
+                </div>
             </div>
         </section>
     </main>
@@ -101,6 +131,32 @@
     
     <script>
         document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Add to cart functionality for all products
+        document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const product = {
+                    id: this.dataset.id,
+                    name: this.dataset.name,
+                    price: parseFloat(this.dataset.price),
+                    image: this.dataset.image
+                };
+                
+                Cart.addItem(product);
+                
+                // Visual feedback
+                const originalText = this.textContent;
+                this.textContent = '✓ Added!';
+                this.style.background = 'var(--croissant-gold)';
+                
+                setTimeout(() => {
+                    this.textContent = originalText;
+                    this.style.background = '';
+                }, 2000);
+            });
+        });
     </script>
 </body>
 </html>
