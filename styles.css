@@ -4,68 +4,87 @@
     box-sizing: border-box;
 }
 
+/* Food Truck Rustic Variables */
 :root {
-    --french-blue: #0055A4;
-    --french-white: #FFFFFF;
-    --french-red: #EF4135;
-    --bistro-cream: #FFF8E7;
-    --croissant-gold: #D4AF37;
-    --baguette-tan: #C19A6B;
-    --text-color: #2c2c2c;
-    --border-radius: 12px;
-    --shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    --wood-dark: #3E2723;
+    --wood-medium: #5D4037;
+    --wood-light: #8D6E63;
+    --chalkboard: #2C3E2E;
+    --chalk-white: #F5F5DC;
+    --burlap: #DEB887;
+    --rust-orange: #D2691E;
+    --vintage-cream: #FFFEF0;
+    --forest-green: #4A6741;
+    --text-color: #3E2723;
+    --border-radius: 4px;
+    --shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 body {
     font-family: 'Patrick Hand', cursive, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     line-height: 1.7;
     color: var(--text-color);
-    background: repeating-linear-gradient(
-        45deg,
-        var(--bistro-cream),
-        var(--bistro-cream) 10px,
-        #FFF5D6 10px,
-        #FFF5D6 20px
-    );
+    background: 
+        repeating-linear-gradient(
+            90deg,
+            #8D6E63 0px,
+            #8D6E63 3px,
+            #A1887F 3px,
+            #A1887F 6px
+        ),
+        linear-gradient(180deg, #BCAAA4 0%, #D7CCC8 100%);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-}
-
-header {
-    background: linear-gradient(to right, 
-        var(--french-blue) 0%, 
-        var(--french-blue) 33%, 
-        var(--french-white) 33%, 
-        var(--french-white) 66%, 
-        var(--french-red) 66%, 
-        var(--french-red) 100%);
-    color: var(--french-white);
-    padding: 3rem 1rem;
-    text-align: center;
-    box-shadow: var(--shadow);
-    border-bottom: 8px solid var(--croissant-gold);
     position: relative;
 }
 
-header::before {
-    content: "🥖 ";
-    position: absolute;
-    left: 10%;
-    top: 50%;
-    transform: translateY(-50%) rotate(-15deg);
-    font-size: 3rem;
-    opacity: 0.3;
+/* Wood grain texture overlay */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        90deg,
+        rgba(62, 39, 35, 0.03) 0px,
+        rgba(62, 39, 35, 0.03) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none;
+    z-index: 0;
 }
 
-header::after {
-    content: " 🧀";
+/* Header - Chalkboard Style */
+header {
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    padding: 3rem 1rem;
+    text-align: center;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.5), var(--shadow);
+    border-bottom: 8px solid var(--wood-dark);
+    position: relative;
+}
+
+/* Chalk texture */
+header::before {
+    content: '';
     position: absolute;
-    right: 10%;
-    top: 50%;
-    transform: translateY(-50%) rotate(15deg);
-    font-size: 3rem;
-    opacity: 0.3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(255, 255, 255, 0.03) 2px,
+        rgba(255, 255, 255, 0.03) 4px
+    );
+    pointer-events: none;
 }
 
 header h1 {
@@ -73,8 +92,7 @@ header h1 {
     font-size: 3.5rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
-    text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-    transform: rotate(-2deg);
+    text-shadow: 2px 2px 0px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
 }
@@ -82,53 +100,65 @@ header h1 {
 header p {
     font-size: 1.3rem;
     font-style: italic;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
     position: relative;
     z-index: 1;
+    opacity: 0.9;
 }
 
-/* Navigation */
+/* Navigation - Wooden Sign Style */
 .main-nav {
-    background: var(--french-blue);
+    background: var(--wood-medium);
     display: flex;
     justify-content: center;
     gap: 0;
     padding: 0;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.5), 0 4px 8px rgba(0, 0, 0, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
+    border-top: 3px solid var(--wood-dark);
+    border-bottom: 3px solid var(--wood-dark);
 }
 
 .main-nav a {
-    color: var(--french-white);
+    color: var(--chalk-white);
     text-decoration: none;
-    padding: 1.2rem 2.5rem;
-    font-size: 1.3rem;
-    font-weight: 700;
+    padding: 1.2rem 2rem;
     transition: all 0.3s ease;
-    border-bottom: 4px solid transparent;
+    border-right: 2px solid rgba(62, 39, 35, 0.3);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
     position: relative;
+    background: var(--wood-dark);
 }
 
-.main-nav a:hover {
-    background: var(--french-red);
-    border-bottom-color: var(--croissant-gold);
+.main-nav a:last-child {
+    border-right: none;
 }
 
+.main-nav a:hover,
 .main-nav a.active {
-    background: var(--french-red);
-    border-bottom-color: var(--croissant-gold);
+    background: var(--rust-orange);
+    color: var(--vintage-cream);
+    transform: translateY(-2px);
 }
 
-.main-nav a::before {
-    font-size: 1.2rem;
-    margin-right: 0.5rem;
+.main-nav a .cart-badge {
+    background: var(--rust-orange);
+    color: var(--vintage-cream);
+    padding: 0.2rem 0.6rem;
+    border-radius: 50%;
+    font-size: 0.9rem;
+    margin-left: 0.5rem;
+    font-weight: bold;
 }
 
-.main-nav a:nth-child(1)::before { content: "🏠 "; }
-.main-nav a:nth-child(2)::before { content: "🛍️ "; }
-.main-nav a:nth-child(3)::before { content: "📧 "; }
+.main-nav a:hover .cart-badge,
+.main-nav a.active .cart-badge {
+    background: var(--chalkboard);
+}
 
 main {
     flex: 1;
@@ -139,40 +169,121 @@ main {
 }
 
 section {
-    background: var(--french-white);
-    border-radius: var(--border-radius);
-    padding: 2.5rem;
+    background: var(--vintage-cream);
+    padding: 3rem 2rem;
     margin-bottom: 2rem;
+    border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    border: 4px solid var(--croissant-gold);
-    position: relative;
+    border: 3px solid var(--wood-medium);
+    background-image: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 20px,
+        rgba(222, 184, 135, 0.08) 20px,
+        rgba(222, 184, 135, 0.08) 40px
+    );
 }
 
 section h2 {
     font-family: 'Caveat', cursive;
-    color: var(--french-blue);
+    font-size: 2.8rem;
+    color: var(--wood-dark);
     margin-bottom: 1.5rem;
-    font-size: 2.5rem;
-    border-bottom: 4px dashed var(--french-red);
-    padding-bottom: 0.8rem;
-    transform: rotate(-1deg);
-}
-
-section h2::before {
-    content: "✨ ";
+    text-align: center;
+    position: relative;
+    padding-bottom: 1rem;
+    text-shadow: 2px 2px 0px rgba(222, 184, 135, 0.5);
 }
 
 section h2::after {
-    content: " ✨";
+    content: '';
+    display: block;
+    width: 100px;
+    height: 3px;
+    background: var(--rust-orange);
+    margin: 1rem auto 0;
+    border-radius: 2px;
 }
 
 section p {
+    line-height: 1.8;
     margin-bottom: 1rem;
-    color: #666;
     font-size: 1.1rem;
 }
 
-/* Products Grid */
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    border: 4px solid var(--wood-dark);
+}
+
+.hero h2 {
+    font-size: 3.5rem;
+    color: var(--chalk-white);
+    margin-bottom: 1.5rem;
+}
+
+.hero-text {
+    font-size: 1.3rem;
+    line-height: 1.9;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* History/Timeline */
+.history {
+    background: var(--burlap);
+    border: 4px solid var(--wood-dark);
+}
+
+.timeline {
+    max-width: 900px;
+    margin: 2rem auto;
+}
+
+.timeline-item {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+    position: relative;
+    padding: 1.5rem;
+    background: var(--vintage-cream);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border-left: 5px solid var(--rust-orange);
+}
+
+.timeline-item .year {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--wood-dark);
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    height: fit-content;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.timeline-item .story h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 1.8rem;
+    color: var(--wood-dark);
+    margin-bottom: 1rem;
+}
+
+.timeline-item .story p {
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+/* Products Grid - Rustic Board Style */
 .products-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -181,273 +292,75 @@ section p {
 }
 
 .product-card {
-    background: var(--french-white);
-    border: 5px solid var(--french-blue);
+    background: var(--wood-light);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    box-shadow: var(--shadow);
+    transition: all 0.3s ease;
+    border: 4px solid var(--wood-dark);
     position: relative;
-    text-decoration: none;
-    color: inherit;
+    overflow: hidden;
+    background-image: repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 3px,
+        rgba(62, 39, 35, 0.1) 3px,
+        rgba(62, 39, 35, 0.1) 6px
+    );
 }
 
 .product-card::before {
-    content: "🇫🇷";
+    content: '★';
     position: absolute;
-    top: -15px;
+    top: 15px;
     right: 15px;
-    font-size: 2rem;
-    background: white;
-    padding: 0 5px;
+    font-size: 1.5rem;
+    color: var(--rust-orange);
+    opacity: 0.5;
 }
 
 .product-card:hover {
-    transform: translateY(-8px) rotate(1deg);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-    border-color: var(--french-red);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    border-color: var(--rust-orange);
 }
 
 .product-card img {
     width: 100%;
-    height: 200px;
+    height: 250px;
     object-fit: cover;
     border-radius: var(--border-radius);
     margin-bottom: 1rem;
-    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    border: 3px solid var(--wood-dark);
+    box-shadow: var(--shadow);
 }
 
 .product-card h3 {
     font-family: 'Caveat', cursive;
-    color: var(--french-red);
     font-size: 2rem;
-    margin-bottom: 0.8rem;
-    transform: rotate(-1deg);
+    color: var(--vintage-cream);
+    margin: 1rem 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .product-card p {
-    color: #666;
+    color: var(--vintage-cream);
     margin-bottom: 1rem;
-    flex-grow: 1;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-.product-card .product-price {
-    font-family: 'Caveat', cursive;
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: var(--croissant-gold);
-    margin: 1rem 0;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-}
-
-.product-card .buy-button,
-.cta-button,
-button.buy-button {
-    margin-top: auto;
-    display: inline-block;
-    width: 100%;
-    padding: 1.2rem 2rem;
-    background: var(--french-red);
-    color: var(--french-white);
-    text-decoration: none;
-    text-align: center;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 4px solid var(--french-blue);
-    cursor: pointer;
-    font-family: 'Patrick Hand', cursive;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-.product-card .buy-button:hover,
-.cta-button:hover,
-button.buy-button:hover {
-    background: var(--french-blue);
-    border-color: var(--french-red);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-}
-
-.product-card .buy-button:active,
-.cta-button:active,
-button.buy-button:active {
-    transform: translateY(0) scale(0.98);
-}
-
-.product-card .buy-button::before,
-button.buy-button::before {
-    content: "🛒 ";
-}
-
-/* Timeline */
-.timeline {
-    position: relative;
-    padding: 2rem 0;
-}
-
-.timeline-item {
-    display: grid;
-    grid-template-columns: 100px 1fr;
-    gap: 2rem;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-.timeline-item::before {
-    content: "";
-    position: absolute;
-    left: 50px;
-    top: 30px;
-    bottom: -30px;
-    width: 4px;
-    background: var(--french-blue);
-}
-
-.timeline-item:last-child::before {
-    display: none;
-}
-
-.year {
-    font-family: 'Caveat', cursive;
+.product-price {
     font-size: 2rem;
-    font-weight: 700;
-    color: var(--french-red);
-    text-align: center;
-    background: var(--french-white);
-    border: 4px solid var(--french-blue);
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-}
-
-.story {
-    background: var(--bistro-cream);
-    padding: 1.5rem;
-    border-radius: var(--border-radius);
-    border: 3px solid var(--croissant-gold);
-}
-
-.story h3 {
+    font-weight: bold;
+    color: var(--chalk-white);
+    margin: 1rem 0;
     font-family: 'Caveat', cursive;
-    color: var(--french-blue);
-    font-size: 1.8rem;
-    margin-bottom: 0.8rem;
-}
-
-.story p {
-    color: var(--text-color);
-    font-size: 1.1rem;
-}
-
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, var(--french-blue) 0%, var(--french-red) 100%);
-    color: var(--french-white);
-    text-align: center;
-    border-color: var(--french-white);
-}
-
-.hero h2 {
-    color: var(--french-white);
-    border-bottom-color: var(--french-white);
-    font-size: 3rem;
-}
-
-.hero-text {
-    font-size: 1.3rem;
-    color: var(--french-white);
-}
-
-/* CTA Section */
-.cta {
-    text-align: center;
-    background: var(--bistro-cream);
-}
-
-.cta-button {
-    max-width: 400px;
-    margin: 2rem auto 0;
-}
-
-.cta-button::before {
-    content: "🎉 ";
-}
-
-/* Contact Form */
-.contact-form {
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group label {
-    display: block;
-    font-family: 'Caveat', cursive;
-    font-size: 1.5rem;
-    color: var(--french-blue);
-    margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 3px solid var(--french-blue);
+    background: var(--chalkboard);
+    display: inline-block;
+    padding: 0.5rem 1.5rem;
     border-radius: var(--border-radius);
-    font-family: 'Patrick Hand', cursive;
-    font-size: 1.1rem;
-    transition: border-color 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--french-red);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 150px;
-}
-
-button[type="submit"] {
-    width: 100%;
-    padding: 1.2rem 2rem;
-    background: var(--french-red);
-    color: var(--french-white);
-    text-decoration: none;
-    text-align: center;
-    border-radius: 50px;
-    font-weight: 700;
-    font-size: 1.2rem;
-    transition: all 0.3s ease;
-    border: 4px solid var(--french-blue);
-    cursor: pointer;
-    font-family: 'Patrick Hand', cursive;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-button[type="submit"]:hover {
-    background: var(--french-blue);
-    border-color: var(--french-red);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-}
-
-button[type="submit"]::before {
-    content: "📧 ";
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
 /* Product Detail Page */
@@ -461,141 +374,358 @@ button[type="submit"]::before {
 .product-detail img {
     width: 100%;
     border-radius: var(--border-radius);
-    border: 5px solid var(--french-blue);
+    box-shadow: var(--shadow);
+    border: 4px solid var(--wood-dark);
 }
 
 .product-info h2 {
-    transform: rotate(0);
-}
-
-.product-info .price {
     font-family: 'Caveat', cursive;
     font-size: 3rem;
-    color: var(--croissant-gold);
-    margin: 1rem 0;
+    color: var(--wood-dark);
+    margin-bottom: 1rem;
+    text-align: left;
 }
 
-.product-info .description {
-    font-size: 1.2rem;
-    line-height: 1.8;
-    margin-bottom: 2rem;
-}
-
-footer {
-    background: var(--french-blue);
-    color: var(--french-white);
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: auto;
-    border-top: 6px solid var(--croissant-gold);
-    font-family: 'Patrick Hand', cursive;
-}
-
-footer p {
-    margin: 0;
-    font-size: 1.1rem;
-}
-
-footer p::before {
-    content: "🥐 ";
-}
-
-footer p::after {
-    content: " 🐌";
-}
-
-/* Cart Badge */
-.cart-badge {
-    background: var(--french-red);
-    color: var(--french-white);
-    padding: 0.2rem 0.6rem;
-    border-radius: 50%;
-    font-size: 0.9rem;
-    margin-left: 0.5rem;
+.product-info h2::after {
     display: none;
 }
 
-/* Cart Items */
+.product-info .price {
+    font-size: 2.5rem;
+    color: var(--chalk-white);
+    background: var(--chalkboard);
+    padding: 0.5rem 1.5rem;
+    border-radius: var(--border-radius);
+    display: inline-block;
+    margin-bottom: 2rem;
+    font-family: 'Caveat', cursive;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.description p {
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.description strong {
+    color: var(--wood-dark);
+    font-size: 1.2rem;
+}
+
+/* Buy Button - Rustic Stamp Style */
+.buy-button,
+button.buy-button {
+    display: inline-block;
+    background: var(--rust-orange);
+    color: var(--vintage-cream);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    border: 3px solid var(--wood-dark);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2), 0 4px 10px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    font-family: 'Patrick Hand', cursive;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 1rem;
+}
+
+.buy-button:hover,
+button.buy-button:hover {
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    transform: scale(1.05);
+    box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.3), 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* CTA Section */
+.cta {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--wood-dark);
+    color: var(--chalk-white);
+    border: 4px solid var(--rust-orange);
+}
+
+.cta h2 {
+    color: var(--chalk-white);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.cta p {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    color: var(--chalk-white);
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--rust-orange);
+    color: var(--vintage-cream);
+    padding: 1.2rem 3rem;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: bold;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    border: 3px solid var(--burlap);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.cta-button:hover {
+    background: var(--forest-green);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Contact Form */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: var(--burlap);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    border: 3px solid var(--wood-dark);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: var(--wood-dark);
+    font-size: 1.1rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    border: 3px solid var(--wood-dark);
+    border-radius: var(--border-radius);
+    font-family: 'Patrick Hand', cursive;
+    font-size: 1rem;
+    background: var(--vintage-cream);
+    color: var(--text-color);
+}
+
+.form-group textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--rust-orange);
+    box-shadow: 0 0 0 3px rgba(210, 105, 30, 0.2);
+}
+
+/* Cart */
+.cart-empty {
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.cart-empty-icon {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+}
+
+.cart-items {
+    margin: 2rem 0;
+}
+
 .cart-item {
     display: grid;
-    grid-template-columns: 100px 1fr auto auto auto;
-    gap: 1.5rem;
-    align-items: center;
+    grid-template-columns: 120px 1fr auto auto;
+    gap: 2rem;
     padding: 1.5rem;
+    background: var(--burlap);
     margin-bottom: 1rem;
-    background: var(--bistro-cream);
     border-radius: var(--border-radius);
-    border: 3px solid var(--croissant-gold);
+    border: 3px solid var(--wood-dark);
+    align-items: center;
 }
 
 .cart-item img {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
+    width: 100%;
     border-radius: var(--border-radius);
-    border: 3px solid var(--french-blue);
+    border: 3px solid var(--wood-dark);
 }
 
 .cart-item-info h3 {
     font-family: 'Caveat', cursive;
-    color: var(--french-blue);
-    font-size: 1.5rem;
-    margin-bottom: 0.3rem;
+    font-size: 1.8rem;
+    color: var(--wood-dark);
+    margin-bottom: 0.5rem;
 }
 
 .cart-item-price {
-    color: #666;
-    font-size: 1.1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--wood-dark);
+    font-family: 'Caveat', cursive;
 }
 
 .cart-item-quantity {
     display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    align-items: center;
+    gap: 1rem;
 }
 
-.cart-item-quantity label {
-    font-weight: 700;
-    color: var(--french-blue);
-}
-
-.cart-item-quantity input {
-    width: 80px;
-    padding: 0.5rem;
-    border: 3px solid var(--french-blue);
+.cart-item-quantity button {
+    background: var(--wood-dark);
+    color: var(--chalk-white);
+    border: none;
+    width: 35px;
+    height: 35px;
     border-radius: var(--border-radius);
-    font-family: 'Patrick Hand', cursive;
-    font-size: 1.1rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+}
+
+.cart-item-quantity button:hover {
+    background: var(--rust-orange);
+    transform: scale(1.1);
+}
+
+.cart-item-quantity span {
+    font-size: 1.3rem;
+    font-weight: bold;
+    min-width: 30px;
     text-align: center;
 }
 
-.cart-item-total {
-    font-family: 'Caveat', cursive;
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--croissant-gold);
-    text-align: right;
-    min-width: 100px;
-}
-
-.remove-btn {
-    background: var(--french-red);
-    color: var(--french-white);
-    border: none;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+.cart-item-remove {
+    background: transparent;
+    border: 2px solid var(--wood-dark);
+    color: var(--wood-dark);
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius);
     cursor: pointer;
-    font-size: 1.5rem;
+    font-family: 'Patrick Hand', cursive;
     transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
-.remove-btn:hover {
-    background: var(--french-blue);
-    transform: scale(1.1);
+.cart-item-remove:hover {
+    background: var(--wood-dark);
+    color: var(--vintage-cream);
+}
+
+.cart-summary {
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    margin-top: 2rem;
+    border: 4px solid var(--wood-dark);
+}
+
+.cart-total {
+    font-size: 2.5rem;
+    font-family: 'Caveat', cursive;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Checkout */
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+
+.checkout-form {
+    background: var(--burlap);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 3px solid var(--wood-dark);
+}
+
+.order-summary {
+    background: var(--wood-light);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    border: 3px solid var(--wood-dark);
+}
+
+.order-summary h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    color: var(--vintage-cream);
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.order-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
+    color: var(--vintage-cream);
+}
+
+.order-total {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 3px solid var(--wood-dark);
+    font-family: 'Caveat', cursive;
+    color: var(--chalk-white);
+}
+
+/* Order Confirmation */
+.order-number {
+    background: var(--chalkboard);
+    color: var(--chalk-white);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    text-align: center;
+    margin: 2rem 0;
+    border: 4px solid var(--rust-orange);
+}
+
+.order-number h3 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.order-number p {
+    font-size: 3rem;
+    font-family: 'Caveat', cursive;
+    color: var(--rust-orange);
+}
+
+/* Footer - Wooden Panel */
+footer {
+    background: var(--wood-dark);
+    color: var(--chalk-white);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: auto;
+    box-shadow: inset 0 4px 20px rgba(0, 0, 0, 0.5), 0 -4px 15px rgba(0, 0, 0, 0.3);
+    border-top: 5px solid var(--rust-orange);
+}
+
+footer p {
+    font-size: 1.1rem;
 }
 
 /* Responsive Design */
@@ -603,41 +733,59 @@ footer p::after {
     header h1 {
         font-size: 2.5rem;
     }
-    
-    header::before,
-    header::after {
-        font-size: 2rem;
+
+    header p {
+        font-size: 1rem;
     }
-    
+
     .main-nav {
-        flex-direction: column;
+        flex-wrap: wrap;
     }
-    
+
     .main-nav a {
-        padding: 1rem;
+        flex: 1 1 45%;
+        text-align: center;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .product-detail,
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+
+    .timeline-item {
+        grid-template-columns: 1fr;
         text-align: center;
     }
-    
-    section {
-        padding: 1.5rem;
-    }
-    
-    section h2 {
-        font-size: 2rem;
-    }
-    
-    .timeline-item {
-        grid-template-columns: 80px 1fr;
-        gap: 1rem;
-    }
-    
-    .year {
-        width: 80px;
-        height: 80px;
-        font-size: 1.5rem;
-    }
-    
-    .product-detail {
+
+    .cart-item {
         grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    section {
+        padding: 2rem 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
     }
 }
