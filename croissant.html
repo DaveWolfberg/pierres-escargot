@@ -39,8 +39,8 @@
     <!-- End Google Tag Manager (noscript) -->
     
     <header>
-        <h1>🐌 Pierre's Escargot</h1>
-        <p>Fine Artisanal Escargot Since 1987</p>
+        <h1>🐌 Pierre's Escargot Truck</h1>
+        <p>Locally-Sourced, Small-Batch, Farm-to-Truck Escargot Since 2019</p>
     </header>
     
     <nav class="main-nav">
@@ -57,52 +57,57 @@
                 
                 <div class="product-info">
                     <h2>Croissants au Beurre</h2>
-                    <div class="price">$8.99</div>
+                    <div class="price">$12.00</div>
                     
                     <div class="description">
                         <p>
-                            <strong>🥐 Artisan French Pastry</strong>
+                            <strong>🥐 Heritage Grain, Slow-Laminated Morning Vessel</strong>
                         </p>
                         <p>
-                            Our croissants are crafted using traditional French laminating techniques, creating those 
-                            signature flaky, buttery layers. We use only premium European butter and carefully control 
-                            every fold to achieve the perfect texture and golden color.
+                            This isn't a croissant. It's a 72-hour commitment to buttery excellence. Made with ancient Kamut wheat 
+                            milled by Benedictine monks at 4am under a full moon (we're not joking, Pierre checks the lunar calendar). 
+                            The butter is European-style, grass-fed, cultured for 6 weeks, and costs more per pound than our rent.
                         </p>
                         <p>
-                            Each croissant is made fresh daily following time-honored methods. The dough is given proper 
-                            resting time between folds, ensuring optimal flavor development and that distinctive honeycomb 
-                            interior that makes French croissants so special.
+                            Each croissant is laminated exactly 73 times (72 seemed lazy, 74 was showing off) and rests for exactly 
+                            6.5 hours between folds. Pierre learned this from a 37-minute YouTube video and now considers himself 
+                            a "master artisan." The dough is scored using a vintage Japanese knife that cost $400.
                         </p>
                         <p>
-                            <strong>What's Included:</strong><br>
-                            • 6 fresh-baked croissants<br>
-                            • Individually wrapped for freshness<br>
-                            • Reheating instructions for best results<br>
-                            • Serving suggestions
+                            <strong>The Experience:</strong><br>
+                            • ONE (1) singular croissant ($12 for ONE because craft)<br>
+                            • Wrapped in compostable paper with minimalist typography<br>
+                            • Comes with a QR code to the croissant's origin story<br>
+                            • Certificate of authenticity (yes, really)<br>
+                            • Pairs with $8 oat milk lattes or your own sense of superiority
                         </p>
                         <p>
-                            <strong>Storage:</strong> Best enjoyed fresh, but can be frozen and reheated for later enjoyment.
+                            <strong>Fun Fact:</strong> It takes 3 days to make but you'll finish it in 45 seconds. Worth it? 
+                            Pierre says yes. Your bank account says maybe. Instagram says ABSOLUTELY.
                         </p>
                         <p>
-                            <strong>Perfect For:</strong> Breakfast, brunch, or an authentic French café experience at home.
+                            <strong>Warning:</strong> Once you try this, regular croissants will taste like sadness.
                         </p>
                     </div>
                     
-                    <a href="#" class="buy-button" id="add-to-cart-btn">Add to Cart - $8.99</a>
+                    <a href="#" class="buy-button" id="add-to-cart-btn">Add to Cart - $12.00</a>
                 </div>
             </div>
         </section>
         
         <section>
-            <h2>Customer Reviews</h2>
+            <h2>What People Are Saying</h2>
             <div class="story">
-                <p><strong>⭐⭐⭐⭐⭐</strong> "The most authentic croissants I've had outside of Paris. Perfectly flaky and buttery!" - François M.</p>
+                <p><strong>⭐⭐⭐⭐⭐</strong> "I paid $12 for one croissant and honestly? I'd do it again. It's basically therapy." - @CroissantQueen</p>
             </div>
             <div class="story" style="margin-top: 1rem;">
-                <p><strong>⭐⭐⭐⭐⭐</strong> "As someone from France, I can confirm these are the real deal. Excellent quality!" - Amélie D.</p>
+                <p><strong>⭐⭐⭐⭐⭐</strong> "Pierre explained the lamination process to me for 20 minutes. I understood none of it but bought 3." - Jordan K.</p>
             </div>
             <div class="story" style="margin-top: 1rem;">
-                <p><strong>⭐⭐⭐⭐⭐</strong> "Incredible croissants! The reheating instructions worked perfectly. My family loved them." - Robert T.</p>
+                <p><strong>⭐⭐⭐⭐☆</strong> "Really good but I had to take out a small loan. Worth it for the 'gram tho." - Brad (Finance Bro)</p>
+            </div>
+            <div class="story" style="margin-top: 1rem;">
+                <p><strong>⭐⭐⭐⭐⭐</strong> "The certificate of authenticity really sealed the deal for me. Now framed in my kitchen." - Sarah M.</p>
             </div>
         </section>
     </main>
@@ -121,7 +126,7 @@
             const product = {
                 id: 'croissant',
                 name: 'Croissants au Beurre',
-                price: 8.99,
+                price: 12.00,
                 image: 'images/croissant.webp'
             };
             
@@ -132,7 +137,7 @@
             this.style.background = 'var(--croissant-gold)';
             
             setTimeout(() => {
-                this.textContent = 'Add to Cart - $8.99';
+                this.textContent = 'Add to Cart - $12.00';
                 this.style.background = '';
             }, 2000);
         });
